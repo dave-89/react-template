@@ -8,7 +8,7 @@ class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      steps: [{id: 0, name:'first'}],
+      steps: [],
       number: 0
     }
   }

@@ -12,6 +12,10 @@ app.get('/', (req, res) => {
   })
 });
 
+app.post('/api', (req, res) => {
+  res.send(req.body);
+});
+
 app.use(express.static('public'));
 
 app.listen(port, () => console.log('Listening to port: ', port));
