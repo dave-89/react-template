@@ -5,18 +5,13 @@ class Button extends React.Component {
     super(props);
     this.state = {
       title: this.props.title,
-      number: 0
+      handleClick: this.props.handleClick
     }
-  }
-
-  onClick() {
-    this.state.number++;
-    console.log('click number: ', this.state.number);
   }
 
   render() {
     return (
-      <button type="button" onClick={this.onClick.bind(this)}>{this.state.title}</button>
+      <button type="button" onClick={this.state.handleClick}>{this.state.title}</button>
     );
   }
 }
