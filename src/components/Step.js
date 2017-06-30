@@ -4,38 +4,47 @@ class Step extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: ''
+      endpoint: 'http://httpbin.org/post',
+      body: {first: 'first', second : 'second'}
     };
 
-    this.handleChange = this.handleChange.bind(this);
+    this.handleEndpoint = this.handleEndpoint.bind(this);
+    this.handleBody = this.handleBody.bind(this);
+
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSubmit(event) {
-    fetch('https://httpbin.org/post', {
+    fetch(this.state.endpoint, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({value: this.state.value})
+      body: JSON.stringify(this.state.body)
     })
-    .then( (res) => {
-        alert(res.status);
-    }
-    );
+    .then((res) => res.json())
+    .then((res) => res['json'])
+    .then((data) => alert(JSON.stringify(data)))
+    .catch((error) => console.log(error));
     event.preventDefault();
   }
 
-  handleChange(event) {
-    this.setState({value: event.target.value});
+  handleEndpoint(event) {
+    this.setState({endpoint: event.target.value});
+  }
+
+  handleBody(event) {
+    this.setState({body: event.target.value});
   }
 
   render() {
     return (
       <div className="Step">
         <form onSubmit={this.handleSubmit}>
-          <input type="text" placeholder="Endpoint" value={this.state.value} onChange={this.handleChange}/>
+          <label for="Endpoint">Endpoint</label>
+          <input id="Endpoint" className="Endpoint" type="text" placeholder="Endpoint" value={this.state.endpoint} onChange={this.handleEndpoint}/>
+          <input className="Body" type="text" placeholder="Body" value={JSON.stringify(this.state.body)} onChange={this.handleBody}/>
           <input type="submit" value="Submit"/>
         </form>
       </div>

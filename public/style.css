@@ -1,8 +1,29 @@
 .Main {
-    text-align: center;
-    font-size: 30px;
-    font-family: cursive;
+  text-align: center;
+  font-size: 30px;
+  font-family: cursive;
 }
+
+.Endpoint {
+  display: inline-block;
+  position: relative;
+  margin: 5px;
+  float: left;
+  width: calc(25% - 10px);
+  height: 40px;
+  background-color: lightgrey;
+}
+
+.Body {
+  display: inline-block;
+  position: relative;
+  margin: 5px;
+  float: left;
+  width: calc(25% - 10px);
+  height: 200px;
+  background-color: lightgrey;
+}
+
 
 /*input[type=text] {
     width: 100%;
