@@ -4,8 +4,8 @@ class Step extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      endpoint: 'http://httpbin.org/post',
-      body: {first: 'first', second : 'second'}
+      endpoint: 'http://localhost:5000/post',
+      body: '{first: \'first\', second : \'second\'}'
     };
 
     this.handleEndpoint = this.handleEndpoint.bind(this);
@@ -21,11 +21,9 @@ class Step extends React.Component {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(this.state.body)
+      body: this.state.body
     })
-    .then((res) => res.json())
-    .then((res) => res['json'])
-    .then((data) => alert(JSON.stringify(data)))
+    .then((res) => alert(JSON.stringify(res)))
     .catch((error) => console.log(error));
     event.preventDefault();
   }
@@ -42,9 +40,8 @@ class Step extends React.Component {
     return (
       <div className="Step">
         <form onSubmit={this.handleSubmit}>
-          <label for="Endpoint">Endpoint</label>
           <input id="Endpoint" className="Endpoint" type="text" placeholder="Endpoint" value={this.state.endpoint} onChange={this.handleEndpoint}/>
-          <input className="Body" type="text" placeholder="Body" value={JSON.stringify(this.state.body)} onChange={this.handleBody}/>
+          <input className="Body" type="text" placeholder="Body" value={this.state.body} onChange={this.handleBody}/>
           <input type="submit" value="Submit"/>
         </form>
       </div>
