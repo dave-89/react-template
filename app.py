@@ -15,15 +15,7 @@ def serve_static(path):
 
 @app.route('/post', methods=['POST'])
 def post():
-    print request.data
-    print type(request.data)
-    if type(data) is str:
-        data = json.loads(str(request.data))
-    else:
-        data = request.data
-    print data.values()
-    print data.values()[0]
-    return json.dumps(data.values()[0])
+    return json.dumps(request.data)
 
 if __name__ == "__main__":
     app.run(port=5000)

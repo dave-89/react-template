@@ -24,6 +24,23 @@
   background-color: lightgrey;
 }
 
+.Step {
+  position: relative;
+  width: 400px;
+  height: 200px;
+  border: 3px solid #73AD21;
+}
+
+.Request, .Response {
+  display: inline-block;
+  position: absolute;
+  margin: 5px;
+  float: left;
+  width: 25%;
+  height: 400px;
+  background-color: lightgrey;
+}
+
 
 /*input[type=text] {
     width: 100%;

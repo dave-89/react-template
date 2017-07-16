@@ -5,7 +5,8 @@ class Step extends React.Component {
     super(props);
     this.state = {
       endpoint: 'http://localhost:5000/post',
-      body: '{first: \'first\', second : \'second\'}'
+      body: '{first: \'first\', second : \'second\'}',
+      response: null
     };
 
     this.handleEndpoint = this.handleEndpoint.bind(this);
@@ -23,7 +24,7 @@ class Step extends React.Component {
       },
       body: this.state.body
     })
-    .then((res) => alert(JSON.stringify(res)))
+    .then(response => response.json().then(data => this.setState({response: data})))
     .catch((error) => console.log(error));
     event.preventDefault();
   }
@@ -38,12 +39,17 @@ class Step extends React.Component {
 
   render() {
     return (
-      <div className="Step">
-        <form onSubmit={this.handleSubmit}>
-          <input id="Endpoint" className="Endpoint" type="text" placeholder="Endpoint" value={this.state.endpoint} onChange={this.handleEndpoint}/>
-          <input className="Body" type="text" placeholder="Body" value={this.state.body} onChange={this.handleBody}/>
-          <input type="submit" value="Submit"/>
-        </form>
+      <div>
+        <div className="Request">
+          <form onSubmit={this.handleSubmit}>
+            <input id="Endpoint" className="Endpoint" type="text" placeholder="Endpoint" value={this.state.endpoint} onChange={this.handleEndpoint}/>
+            <input className="Body" type="text" placeholder="Body" value={this.state.body} onChange={this.handleBody}/>
+            <input type="submit" value="Submit"/>
+          </form>
+        </div>
+        <div className="Response">
+          {this.state.response}
+        </div>
       </div>
     );
   }
