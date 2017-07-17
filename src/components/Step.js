@@ -5,17 +5,11 @@ class Step extends React.Component {
     super(props);
     this.state = {
       endpoint: 'http://localhost:5000/post',
-      body: '{first: \'first\', second : \'second\'}',
-      response: null
+      body: '{first: \'first\', second : \'second\'}'
     };
-
-    this.handleEndpoint = this.handleEndpoint.bind(this);
-    this.handleBody = this.handleBody.bind(this);
-
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleSubmit(event) {
+  run = () => {
     fetch(this.state.endpoint, {
       method: 'POST',
       headers: {
@@ -24,31 +18,62 @@ class Step extends React.Component {
       },
       body: this.state.body
     })
-    .then(response => response.json().then(data => this.setState({response: data})))
+    .then(response => response.json().then(data => {
+      this.setState({response: data});
+      return data;
+    }
+    ))
     .catch((error) => console.log(error));
+  }
+
+  handleSubmit = (event) => {
+    this.run();
     event.preventDefault();
   }
 
-  handleEndpoint(event) {
+  handleEndpoint = (event) => {
     this.setState({endpoint: event.target.value});
   }
 
-  handleBody(event) {
+  handleBody = (event) => {
     this.setState({body: event.target.value});
   }
 
+  handleHeaders = (event) => {
+    this.setState({headers: event.target.value});
+  }
+
+  handleAssertions = (event) => {
+    this.setState({assertions: event.target.value});
+  }
+
+  handleResult = (event) => {
+    this.setState({result: event.target.value});
+  }
+
+  previous = () => {
+    if(this.props.id > 1) {
+      return <input type="text" placeholder="previous step" value={this.state.previous}/>;
+    } else {
+      return <div/>
+    }
+  }
+
+
   render() {
     return (
-      <div>
-        <div className="Request">
+      <div className="Step" style={this.state.stepStyle}>
+        <div>
           <form onSubmit={this.handleSubmit}>
             <input id="Endpoint" className="Endpoint" type="text" placeholder="Endpoint" value={this.state.endpoint} onChange={this.handleEndpoint}/>
-            <input className="Body" type="text" placeholder="Body" value={this.state.body} onChange={this.handleBody}/>
-            <input type="submit" value="Submit"/>
+            <input className="ReqBody" type="text" placeholder="Body" value={this.state.body} onChange={this.handleBody}/>
+            <input className="Headers" type="text" placeholder="Headers" value={this.state.headers} onChange={this.handleHeaders}/>
+            <input className="Assertions" type="text" placeholder="Assertions" value={this.state.assertions} onChange={this.handleAssertions}/>
+            <input className="Result" type="text" placeholder="Result" value={this.state.result} onChange={this.handleResult}/>
+            <input type="submit" className="Test" value="Submit" value="Test"/>
+            <input type="text" value={this.state.response}/>
+            {this.previous()}
           </form>
-        </div>
-        <div className="Response">
-          {this.state.response}
         </div>
       </div>
     );

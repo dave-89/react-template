@@ -9,23 +9,32 @@ class Main extends React.Component {
     super(props);
     this.state = {
       steps: [],
+      stepObjects: [],
       number: 0
     }
   }
 
-  addStep() {
-    var lenght = this.state.steps.length;
-    this.state.steps.push({id: lenght++, name:'first'});
+  addStep = () => {
+    var i = this.state.steps.length + 1;
+    var st = <Step key={i} id={i} ref={(inst) => {this.state.stepObjects.push(inst);}}/>
+    this.state.steps.push(st);
     this.forceUpdate();
+  }
+
+  runAll = () => {
+    this.state.stepObjects.forEach(
+      step => step.run()
+    );
   }
 
   render() {
     return (
       <div className="Main">
         <Header title="Welcome to Step Creator"/>
-        <Button title="Add new step" handleClick={this.addStep.bind(this)}/>
+        <Button title="Add new step" handleClick={this.addStep}/>
+        <Button title="Run All" handleClick={this.runAll}/>
         <div>
-          {this.state.steps.map(step => <Step key={step.id}/>)}
+          {this.state.steps}
         </div>
       </div>
     );

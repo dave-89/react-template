@@ -1,44 +1,71 @@
-.Main {
+/*.Main {
   text-align: center;
   font-size: 30px;
   font-family: cursive;
 }
 
 .Endpoint {
-  display: inline-block;
-  position: relative;
-  margin: 5px;
-  float: left;
-  width: calc(25% - 10px);
-  height: 40px;
-  background-color: lightgrey;
-}
-
-.Body {
-  display: inline-block;
-  position: relative;
-  margin: 5px;
-  float: left;
-  width: calc(25% - 10px);
-  height: 200px;
-  background-color: lightgrey;
-}
-
-.Step {
-  position: relative;
-  width: 400px;
-  height: 200px;
-  border: 3px solid #73AD21;
-}
-
-.Request, .Response {
-  display: inline-block;
   position: absolute;
-  margin: 5px;
-  float: left;
-  width: 25%;
-  height: 400px;
+  top: 5%;
+  left: 5%;
+  width: 90%;
+  height: 15%;
   background-color: lightgrey;
+}
+
+.Headers {
+  position: absolute;
+  top: 25%;
+  left: 5%;
+  width: 29%;
+  height: 45%;
+  background-color: lightgrey;
+}
+
+.ReqBody {
+  position: absolute;
+  top: 25%;
+  left: 35.5%;
+  width: 29%;
+  height: 45%;
+  background-color: lightgrey;
+}
+
+.Return {
+  position: absolute;
+  top: 25%;
+  left: 66%;
+  width: 29%;
+  height: 22%;
+  background-color: lightgrey;
+}
+
+.Assertions {
+  position: absolute;
+  top: 48%;
+  left: 66%;
+  width: 29%;
+  height: 22%;
+  background-color: lightgrey;
+}
+
+.Response {
+  position: absolute;
+  top: 71%;
+  left: 5%;
+  width: 59.5%;
+  height: 27%;
+  background-color: lightgrey;
+}
+
+.Test {
+  position: absolute;
+  top: 74%;
+  left: 66%;
+  width: 29%;
+  height: 22%;
+  background-color: lightgrey;
+  cursor: pointer;
 }
 
 
@@ -56,4 +83,4 @@
 
 input[type=text]:focus {
     width: 100%;
-}*/
+}*/*/
